@@ -10,13 +10,17 @@ import {
 import { BorderBeam } from "@/components/ui/border-beam"
 import { Button } from "@/components/ui/button"
 import SectionBadge from "@/components/ui/section-badge"
-import { features, perks, pricingCards } from "@/constants"
-import { ArrowRight, ChevronRight, Zap } from "lucide-react"
+import { features, perks, pricingCards, reviews } from "@/constants"
+import { ArrowRight, ChevronRight, User, Zap } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import Marquee from "@/components/ui/marquee"
 
 const HomePage = () => {
+	const firstRow = reviews.slice(0, Math.floor(reviews.length / 2))
+	const secondRow = reviews.slice(Math.floor(reviews.length / 2))
+
 	return (
 		<section className="w-full relative flex flex-col items-center justify-center px-4 md:px-0 py-8">
 			{/* Hero */}
@@ -153,11 +157,11 @@ const HomePage = () => {
 							<Card 
 								key={card.priceId}
 								className={cn(
-									'flex flex-col w-full border-neutral-700',
+									'flex flex-col w-full border-slate-700',
 									card.title === 'Unlimited Saas' && 'border-2 border-primary'
 								)}
 							>
-								<CardHeader className="border-2 border-border">
+								<CardHeader className="border-b-2 border-border">
 									<span>{ card.title }</span>
 									<CardTitle className={cn(card.title !== 'Unlimited Saas' && 'text-muted-foreground')}>
 										{ card.price }
@@ -187,6 +191,78 @@ const HomePage = () => {
 								</CardFooter>
 							</Card>
 						)) }
+					</div>
+				</Container>
+			</Wrapper>
+
+			{/* Testimonials */}
+			<Wrapper className="flex flex-col items-center justify-center py-12 relative">
+				<Container>
+					<div className="max-w-md md:mx-auto text-start md:text-center">
+						<SectionBadge title="Our Customers" />
+						<h2 className="text-3xl lg:text-4xl font-semibold mt-6">
+							What people are saying
+						</h2>
+						<p className="text-muted-foreground mt-6">
+							See how Astra empowers business of all sizes. Here&apos;s what real people are saying on Twitter
+						</p>
+					</div>
+				</Container>
+				<Container>
+					<div className="py-10 md:py-20 w-full">
+						<div className="relative flex flex-col items-center justify-center h-full w-full overflow-hidden py-6">
+							<Marquee pauseOnHover className="[--duration:20s] select-none">
+								{ firstRow.map(review => (
+									<figure
+										key={review.username}
+										className="relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4 border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]"
+									>
+										<div className="flex flex-row items-center gap-2">
+											<User className="w-6 h-6" />
+											<div className="flex flex-col">
+												<figcaption className="text-sm font-medium">
+													{ review.name }
+												</figcaption>
+												<p className="text-xs font-medium text-muted-foreground">
+													{ review.username }
+												</p>
+											</div>
+										</div>
+										<blockquote className="mt-2 text-sm">
+											{ review.body }
+										</blockquote>
+									</figure>
+								)) }
+							</Marquee>
+
+							<Marquee reverse pauseOnHover className="[--duration:20s] select-none">
+								{ secondRow.map(review => (
+									<figure
+										key={review.username}
+										className="relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4 border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]"
+									>
+										<div className="flex flex-row items-center gap-2">
+											<User className="w-6 h-6" />
+											<div className="flex flex-col">
+												<figcaption className="text-sm font-medium">
+													{ review.name }
+												</figcaption>
+												<p className="text-xs font-medium text-muted-foreground">
+													{ review.username }
+												</p>
+											</div>
+										</div>
+										<blockquote className="mt-2 text-sm">
+											{ review.body }
+										</blockquote>
+									</figure>
+								)) }
+							</Marquee>
+							
+							{/* Overlay left & right */}
+							<div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background" />
+							<div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background" />
+						</div>
 					</div>
 				</Container>
 			</Wrapper>
