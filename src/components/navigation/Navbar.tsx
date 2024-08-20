@@ -1,9 +1,11 @@
 import Link from "next/link"
 import Icons from "../global/icons"
 import { buttonVariants } from "../ui/button"
+import { currentUser } from "@clerk/nextjs/server"
+import { UserButton } from "@clerk/nextjs"
 
-const Navbar = () => {
-	const user = false
+const Navbar = async () => {
+	const user = await currentUser()
 
 	return (
 		<header className="px-4 h-16 sticky top-0 inset-x-0 w-full bg-background/40 backdrop-blur-lg border-b border-border z-50">
@@ -34,7 +36,7 @@ const Navbar = () => {
 
 				<div className="flex items-center gap-4">
 					{ user ? (
-						'User Button'
+						<UserButton />
 					) : (
 						<>
 							<Link href="/sign-in" className={buttonVariants({
