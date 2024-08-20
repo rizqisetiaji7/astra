@@ -60,7 +60,7 @@ export const pricingCards = [
         highlight: "Key features",
         buttonText: "Start for free",
         features: ["Limited projects", "1 Team member", "Basic features"],
-        priceId: "",
+        priceId: "price_1OYxkqFj9oKEERu1OyDq7xLc"
     },
     {
         title: "Unlimited Saas",
