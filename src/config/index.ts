@@ -34,5 +34,5 @@ export const SITE_CONFIG: Metadata = {
          }
       ]
    },
-   metadataBase: new URL('https://astra.vercel.app'),
+   metadataBase: new URL('https://astra-ai-builder.vercel.app'),
 }
