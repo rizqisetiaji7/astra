@@ -120,6 +120,10 @@
   transform: translateY(-200px) rotate(180deg) scale(2) translateZ(0px);
 }
 
+.wrapper {
+  @apply flex flex-col items-center justify-center py-12 relative;
+}
+
 @keyframes automation-zoom-in {
   0% {
     opacity: 0;
